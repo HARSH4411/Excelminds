@@ -1,4 +1,4 @@
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion } from 'framer-motion';
 import { useScrollReveal } from '@/hooks/useScrollReveal';
 import { useCountUp } from '@/hooks/useCountUp';
 import { useState } from 'react';
@@ -45,18 +45,16 @@ function PamphletCarousel() {
   return (
     <div className="relative flex flex-col items-center max-w-lg mx-auto">
       <div className="glass-card-hover rounded-2xl overflow-hidden w-full shadow-xl relative">
-        <AnimatePresence mode="wait">
-          <motion.img
-            key={current}
-            src={carouselImages[current].src}
-            alt={carouselImages[current].alt}
-            className="w-full h-auto"
-            initial={{ opacity: 0, x: 60 }}
-            animate={{ opacity: 1, x: 0 }}
-            exit={{ opacity: 0, x: -60 }}
-            transition={{ duration: 0.4 }}
-          />
-        </AnimatePresence>
+        <div className="relative w-full">
+          {carouselImages.map((img, i) => (
+            <img
+              key={i}
+              src={img.src}
+              alt={img.alt}
+              className={`w-full h-auto block transition-opacity duration-500 ${i === 0 ? '' : 'absolute inset-0'} ${i === current ? 'opacity-100' : 'opacity-0'}`}
+            />
+          ))}
+        </div>
         <button onClick={prev} className="absolute left-2 top-1/2 -translate-y-1/2 p-2 rounded-full bg-background/70 backdrop-blur-sm hover:bg-background/90 transition-colors shadow-md" aria-label="Previous">
           <ChevronLeft className="w-5 h-5 text-foreground" />
         </button>
