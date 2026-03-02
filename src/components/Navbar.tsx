@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Menu, X } from 'lucide-react';
+import logo from '@/assets/logo.png';
 
 const navLinks = [
   { label: 'Home', href: '#' },
@@ -37,9 +38,8 @@ export default function Navbar() {
       >
         <div className="flex items-center justify-between px-6 py-3">
           {/* Brand */}
-          <a href="#" className="flex items-baseline gap-0 text-xl md:text-2xl font-black font-display tracking-tight">
-            <span style={{ color: '#D4A017' }}>EXCEL</span>
-            <span style={{ color: '#4A1A6B' }}>MINDS</span>
+          <a href="#" className="flex items-center">
+            <img src={logo} alt="ExcelMinds Professional Academy" className="h-10 md:h-12 w-auto" />
           </a>
 
           {/* Desktop links */}
